@@ -62,12 +62,13 @@ developing your own process.
 
 - Add a new toy when the toy form is submitted
 
-  - How I debugged:
+  - How I debugged:  I tried to submit.  It gave a 500 Internal Server Error and the Rails log "NameError (uninitialized constant ToysController::Toys):
+  app/controllers/toys_controller.rb:10:in `create'". So I looked in the create controller.  The error said "Name error" so immediately I noticed the error in the Toy.create; it said Toys.create. 
 
 - Update the number of likes for a toy
 
-  - How I debugged:
+  - How I debugged:  I clicked the Like button, and it errored to the fetch request in client folder.  2 things, I knew the React was right, but I inspected it anyway.  The error said "Unexpected end of json", so I looked in the React code to inspect the json flow; it looked correct.  Then I went to the controller to inspect the json flow, and it was missing the render code.  I fixed the render code and it worked.
 
 - Donate a toy to Goodwill (and delete it from our database)
 
-  - How I debugged:
+  - How I debugged:  I clicked on the Slinky Dog Donate button and received a 404 error and the rails log: "Started DELETE "/toys/4" for 127.0.0.1 at 2022-05-29 09:41:55 -0500 ActionController::RoutingError (No route matches [DELETE] "/toys/4"):". So I looked in the routes file and noticed the :destroy method was missing.  I added it and successfully deleted Slinky Dog.
